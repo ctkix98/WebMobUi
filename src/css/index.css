@@ -1,3 +1,10 @@
-body {
-  background-color: rgb(0, 128, 255);
-}
+/* Packages */
+@import 'normalize.css';
+
+/* Project */
+@import 'variables.css';
+@import 'structure.css';
+@import 'typography.css';
+@import 'buttons.css';
+@import 'lists.css';
+@import 'player.css';
