@@ -1,4 +1,19 @@
-console.log("It works !");
+class ArtistCover extends HTMLElement {
+  static observedAttributes = ["cover", "name"];
+  connectedCallback() {
+    this.render();
+  }
+  attributeChangedCallback() {
+    this.render();
+  }
+  render() {
+    this.innerHTML = `
+    <img src="${this.getAttribute("cover")}" />
+    <div>${this.getAttribute("name")}</div>
+  `;
+  }
+}
+customElements.define("artist-cover", ArtistCover);
 
 async function getImage() {
   const artists = await fetch(
@@ -13,22 +28,11 @@ function displayArtist(arrayArtists) {
   artistsSection.innerHTML = "";
 
   arrayArtists.forEach((artist) => {
-    console.log(artist)
-    const ahref = document.createElement("a");
-    ahref.href = "#";
+    const artistCover = document.createElement("artist-cover");
+    artistCover.setAttribute("cover", artist.image_url);
+    artistCover.setAttribute("name", artist.name);
 
-    const image = document.createElement("img");
-    image.src = artist.image_url;
-
-    const nameArtist = document.createElement("div");
-    nameArtist.classList.add("artist-list-item-title");
-    nameArtist.textContent = artist.name;
-
-    ahref.appendChild(image);
-    ahref.appendChild(nameArtist);
-
-    artistsSection.appendChild(ahref);
-
+    artistsSection.appendChild(artistCover);
   });
 }
 
