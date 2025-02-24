@@ -1,39 +1,8 @@
-class ArtistCover extends HTMLElement {
-  static observedAttributes = ["cover", "name"];
-  connectedCallback() {
-    this.render();
-  }
-  attributeChangedCallback() {
-    this.render();
-  }
-  render() {
-    this.innerHTML = `
-    <img src="${this.getAttribute("cover")}" />
-    <div>${this.getAttribute("name")}</div>
-  `;
-  }
-}
-customElements.define("artist-cover", ArtistCover);
+import Artist from "../Artist";
+import "../src/elements/artist-list"
+import * as apiCall from "./api"
 
-async function getImage() {
-  const artists = await fetch(
-    "https://webmob-ui-22-spotlified.herokuapp.com/api/artists"
-  );
-  const data = await artists.json();
-  return data;
-}
 
-function displayArtist(arrayArtists) {
-  const artistsSection = document.querySelector(".artist-list");
-  artistsSection.innerHTML = "";
+const artist1 = new Artist;
+artist1.displayCovers(await apiCall.getArtits())
 
-  arrayArtists.forEach((artist) => {
-    const artistCover = document.createElement("artist-cover");
-    artistCover.setAttribute("cover", artist.image_url);
-    artistCover.setAttribute("name", artist.name);
-
-    artistsSection.appendChild(artistCover);
-  });
-}
-
-displayArtist(await getImage());
