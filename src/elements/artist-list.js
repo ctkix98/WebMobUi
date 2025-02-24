@@ -8,8 +8,9 @@ export class ArtistCover extends HTMLElement {
     }
     render() {
       this.innerHTML = `
+      <a href="#">
       <img src="${this.getAttribute("cover")}" />
-      <div>${this.getAttribute("name")}</div>
+      <div class="artist-list-item-title">${this.getAttribute("name")}</div>
     `;
     }
   }
