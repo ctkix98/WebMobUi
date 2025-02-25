@@ -1,5 +1,5 @@
 export class ArtistCover extends HTMLElement {
-    static observedAttributes = ["cover", "name"];
+    static observedAttributes = ["cover", "name", "id"];
     connectedCallback() {
       this.render();
     }
@@ -8,7 +8,7 @@ export class ArtistCover extends HTMLElement {
     }
     render() {
       this.innerHTML = `
-      <a href="#">
+      <a href="${this.getAttribute('href')}">
       <img src="${this.getAttribute("cover")}" />
       <div class="artist-list-item-title">${this.getAttribute("name")}</div>
     `;

@@ -6,6 +6,7 @@ export function displayCovers(arrayArtists) {
     const artistCover = document.createElement("artist-cover");
     artistCover.setAttribute("cover", artist.image_url);
     artistCover.setAttribute("name", artist.name);
+    artistCover.setAttribute("href", `#artist-${artist.id}`)
 
     artistsSection.appendChild(artistCover);
   });

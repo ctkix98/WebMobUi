@@ -7,10 +7,10 @@ async function getArtits(){
 
 }
 
-async function getSongs(){
-    const response = await fetch(`${url}artists/:id/songs`)
+async function getSongs(id){
+    const response = await fetch(`${url}artists/${id}/songs`)
     const songsList = await response.json()
     return songsList;
 }
-export {getArtits}
+export {getArtits, getSongs}
 
