@@ -17,21 +17,22 @@ titles.forEach((title) => {
 });
 
 // Afficher les titres en fonction du click sur les covers
-idArtist.forEach((id) => {
-  id.addEventListener("click", async (e) => {
-    const link = e.target.closest("a");
-    //console.log(e.target)
-    //console.log(link.getAttribute("href"));
-    const nameArtist = e.target
-      .closest(".artist-list-item-title")
-      .textContent.trim();
-    //console.log(nameArtist);
-    const split = link.hash.split("-");
 
-    nameArtistSelected.innerHTML = `Artiste > ${nameArtist}`;
-    displaySongsTitle(await apiCall.getSongs(split[1]));
+  idArtist.forEach((id) => {
+    id.addEventListener("click", async (e) => {
+      const link = e.target.closest("a");
+      //console.log(e.target)
+      //console.log(link.getAttribute("href"));
+      const nameArtist = e.target
+        .closest(".artist-list-item-title")
+        .textContent.trim();
+      //console.log(nameArtist);
+      const split = link.hash.split("-");
+
+      nameArtistSelected.innerHTML = `Artiste > ${nameArtist}`;
+      displaySongsTitle(await apiCall.getSongs(split[1]));
+    });
   });
-});
 
 //Barre de navigation
 
@@ -53,32 +54,45 @@ function removeActiv() {
   });
 }
 
+//pour afficher l'accueil la première fois
+removeActiv();
 const homePage = document.querySelector("#home-section");
 homePage.classList.add("active");
+getHash();
 
 //Récupérer les hash
-window.addEventListener("hashchange", () => {
+window.addEventListener("hashchange", async () => {
   const hash = window.location.hash;
-  //console.log(hash);
+  console.log(hash);
+  const hasSplit = hash.split("-");
+  console.log(hasSplit);
 
   const activeSection = document.querySelector(`${hash}-section`); //récupérer le hash
-  switch (hash) {
+  switch (hasSplit[0]) {
     case "#home":
-      removeActiv()
+      removeActiv();
       activeSection.classList.add("active");
       window.location.hash = hash;
       break;
     case "#player":
-      removeActiv()
+      removeActiv();
       activeSection.classList.add("active");
       window.location.hash = hash;
 
       break;
     case "#artists":
-      removeActiv()
-      activeSection.classList.add("active");
-      //qqch
+        removeActiv();
+        activeSection.classList.add("active");
+        console.log("je suis ici");
+    
       break;
+    case "#artist":
+      removeActiv();
+      const listSection = document.querySelector("#list-section");
+      listSection.classList.add("active");
+      displaySongsTitle(await apiCall.getSongs(hasSplit[1]));
+      break;
+
     case "#favorites":
       activeSection.classList.add("active");
       window.location.hash = hash;
@@ -86,6 +100,3 @@ window.addEventListener("hashchange", () => {
       break;
   }
 });
-
-
-getHash();
