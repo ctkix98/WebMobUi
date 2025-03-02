@@ -36,23 +36,25 @@ idArtist.forEach((id) => {
 //Barre de navigation
 
 //Permet de rajouter le hash #home si la window n'a pas de hash de base
-function getHash(){
-  let hash = window.location.hash
-  if(!hash){
-    history.replaceState("","","#home")
+function getHash() {
+  let hash = window.location.hash;
+  if (!hash) {
+    history.replaceState("", "", "#home");
   }
-  const hashSplited = hash.split("-")
-  return hashSplited
+  const hashSplited = hash.split("-");
+  return hashSplited;
 }
 
+//Enelver toutes les sections actives
+function removeActiv() {
+  const sections = document.querySelectorAll("main section");
+  sections.forEach((section) => {
+    section.classList.remove("active");
+  });
+}
 
-//Enlever toutes les sections actives, sauf page d'accueil
-const sections = document.querySelectorAll("main section")
-sections.forEach(section =>{
-  section.classList.remove("active")
-})
-const homePage = document.querySelector("#home-section")
-homePage.classList.add("active")
+const homePage = document.querySelector("#home-section");
+homePage.classList.add("active");
 
 //Récupérer les hash
 window.addEventListener("hashchange", () => {
@@ -62,15 +64,19 @@ window.addEventListener("hashchange", () => {
   const activeSection = document.querySelector(`${hash}-section`); //récupérer le hash
   switch (hash) {
     case "#home":
+      removeActiv()
       activeSection.classList.add("active");
       window.location.hash = hash;
       break;
     case "#player":
+      removeActiv()
       activeSection.classList.add("active");
       window.location.hash = hash;
 
       break;
     case "#artists":
+      removeActiv()
+      activeSection.classList.add("active");
       //qqch
       break;
     case "#favorites":
@@ -81,4 +87,5 @@ window.addEventListener("hashchange", () => {
   }
 });
 
-getHash()
+
+getHash();
