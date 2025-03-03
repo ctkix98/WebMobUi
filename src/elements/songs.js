@@ -1,3 +1,5 @@
+import {playSong} from './player'
+
 export function displaySongsTitle(arraySongs){
     const songSection = document.querySelector(".list");
     songSection.innerHTML = "";
@@ -11,9 +13,9 @@ export function displaySongsTitle(arraySongs){
       songSection.appendChild(songTitle);
 
        songTitle.addEventListener("play_click", e=>{
-        console.log("Je suis cliqué ici")
-        console.log(e.target)
-
+        //console.log("Je suis cliqué ici")
+        //console.log(e.target)
+        playSong(song, arraySongs)
        })
 
 
