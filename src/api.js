@@ -12,5 +12,6 @@ async function getSongs(id){
     const songsList = await response.json()
     return songsList;
 }
+
 export {getArtits, getSongs}
 

@@ -1,3 +1,5 @@
+const playEvent = new CustomEvent("play_click")
+
 export class SongList extends HTMLElement {
   static observedAttributes = ["favorite"];
   connectedCallback() {
@@ -22,8 +24,15 @@ export class SongList extends HTMLElement {
             </button>
           </div>
         </a>`;
+
+        const playButton = this.querySelector(".play-button")
+        //console.log(playButton)
+        playButton.addEventListener("click", (e)=>{
+          e.preventDefault()
+          this.dispatchEvent(playEvent)
+          //console.log(e.target)
+        })
   }
 }
-customElements.define("song-list", SongList); 
+customElements.define("song-list", SongList);
 //il faudra vider quand on fera l'appel de la liste des chanson, directement dans la classe Song
-

@@ -17,25 +17,32 @@ titles.forEach((title) => {
 });
 
 // Afficher les titres en fonction du click sur les covers
+idArtist.forEach((id) => {
+  id.addEventListener("click", async (e) => {
+    const link = e.target.closest("a");
+    //console.log(e.target)
+    //console.log(link.getAttribute("href"));
+    const nameArtist = e.target
+      .closest(".artist-list-item-title")
+      .textContent.trim();
+    //console.log(nameArtist);
+    const split = link.hash.split("-");
 
-  idArtist.forEach((id) => {
-    id.addEventListener("click", async (e) => {
-      const link = e.target.closest("a");
-      //console.log(e.target)
-      //console.log(link.getAttribute("href"));
-      const nameArtist = e.target
-        .closest(".artist-list-item-title")
-        .textContent.trim();
-      //console.log(nameArtist);
-      const split = link.hash.split("-");
-
-      nameArtistSelected.innerHTML = `Artiste > ${nameArtist}`;
-      displaySongsTitle(await apiCall.getSongs(split[1]));
-    });
+    nameArtistSelected.innerHTML = `Artiste > ${nameArtist}`;
+    displaySongsTitle(await apiCall.getSongs(split[1]));
   });
+});
 
-//Barre de navigation
+//Player
+const playerAudio = document.querySelector("#audio-player")
+console.log(playerAudio)
 
+//Get musique
+
+
+// })
+
+//BARRE DE NAVIGATION
 //Permet de rajouter le hash #home si la window n'a pas de hash de base
 function getHash() {
   let hash = window.location.hash;
@@ -63,7 +70,7 @@ getHash();
 //Récupérer les hash
 window.addEventListener("hashchange", async () => {
   const hash = window.location.hash;
-  console.log(hash);
+  //console.log(hash);
   const hasSplit = hash.split("-");
   console.log(hasSplit);
 
@@ -81,10 +88,9 @@ window.addEventListener("hashchange", async () => {
 
       break;
     case "#artists":
-        removeActiv();
-        activeSection.classList.add("active");
-        console.log("je suis ici");
-    
+      removeActiv();
+      activeSection.classList.add("active");
+
       break;
     case "#artist":
       removeActiv();

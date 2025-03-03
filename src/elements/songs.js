@@ -9,5 +9,13 @@ export function displaySongsTitle(arraySongs){
       songTitle.setAttribute("favorite", false)
   
       songSection.appendChild(songTitle);
+
+       songTitle.addEventListener("play_click", e=>{
+        console.log("Je suis cliqué ici")
+        console.log(e.target)
+
+       })
+
+
     });
 }
