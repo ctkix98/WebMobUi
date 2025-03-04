@@ -73,9 +73,15 @@ previousButton.addEventListener("click", previousSong);
 player.addEventListener("timeupdate", ()=>{
   playerProgress.value = player.currentTime
   playerTimeCurrent.innerText = formatTimestamp(player.currentTime)
+
+})
+
+player.addEventListener("ended", ()=>{
+  nextSong()
 })
 
 //EventListener pour avoir le temps total de la chanson
+
 player.addEventListener("durationchange", ()=>{
   playerProgress.max = player.duration 
   playerTimeDuration.innerText = formatTimestamp(player.duration)
