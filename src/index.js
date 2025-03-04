@@ -2,10 +2,14 @@ import { displayCovers } from "./elements/Artist";
 import { displaySongsTitle } from "./elements/songs";
 import "../src/elements/artist-list";
 import "../src/elements/song-list";
+import { addToggle } from "../src/elements/search";
 import * as apiCall from "./api";
 
 //Appeler pour récupérer les artistes et les covers
 displayCovers(await apiCall.getArtits());
+
+//Barre de recherche
+addToggle();
 
 const idArtist = document.querySelectorAll("artist-cover");
 const nameArtistSelected = document.querySelector("#list-section h4");
@@ -34,13 +38,8 @@ idArtist.forEach((id) => {
 });
 
 //Player
-const playerAudio = document.querySelector("#audio-player")
-console.log(playerAudio)
-
-//Get musique
-
-
-// })
+const playerAudio = document.querySelector("#audio-player");
+console.log(playerAudio);
 
 //BARRE DE NAVIGATION
 //Permet de rajouter le hash #home si la window n'a pas de hash de base
@@ -103,6 +102,17 @@ window.addEventListener("hashchange", async () => {
       activeSection.classList.add("active");
       window.location.hash = hash;
 
+      break;
+
+    case "#search":
+      //console.log("je suis dans search")
+      const searchList = await apiCall.search(hasSplit[1]);
+      removeActiv();
+      const searchSection = document.querySelector("#list-section");
+      searchSection.classList.add("active");
+      nameArtistSelected.innerHTML = `Elements relatifs à ta recherche : ${hasSplit[1]}`;
+      displaySongsTitle(searchList);
+      console.log(searchList)
       break;
   }
 });

@@ -12,6 +12,10 @@ async function getSongs(id){
     const songsList = await response.json()
     return songsList;
 }
-
-export {getArtits, getSongs}
+async function search(input){
+    const response = await fetch(`${url}songs/search/${input}`)
+    const inputSearch = await response.json()
+    return inputSearch;
+}
+export {getArtits, getSongs, search}
 
