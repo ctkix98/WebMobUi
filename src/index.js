@@ -74,23 +74,25 @@ window.addEventListener("hashchange", async () => {
   console.log(hasSplit);
 
   const activeSection = document.querySelector(`${hash}-section`); //récupérer le hash
+  //Rediriger en fonction du has
   switch (hasSplit[0]) {
     case "#home":
       removeActiv();
       activeSection.classList.add("active");
       window.location.hash = hash;
       break;
+
     case "#player":
       removeActiv();
       activeSection.classList.add("active");
       window.location.hash = hash;
-
       break;
+
     case "#artists":
       removeActiv();
       activeSection.classList.add("active");
-
       break;
+
     case "#artist":
       removeActiv();
       const listSection = document.querySelector("#list-section");
@@ -101,7 +103,6 @@ window.addEventListener("hashchange", async () => {
     case "#favorites":
       activeSection.classList.add("active");
       window.location.hash = hash;
-
       break;
 
     case "#search":
