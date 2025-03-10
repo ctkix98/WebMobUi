@@ -5,6 +5,15 @@ import "../src/elements/song-list";
 import { addToggle } from "../src/elements/search";
 import * as apiCall from "./api";
 
+window.addEventListener('offline', (e) => {
+  document.querySelector('body').classList.add("offline");
+});
+
+window.addEventListener('online', (e) => {
+  document.querySelector('body').classList.remove("offline");
+});
+
+
 //Appeler pour récupérer les artistes et les covers
 displayCovers(await apiCall.getArtits());
 

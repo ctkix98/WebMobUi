@@ -18,4 +18,14 @@
   */
   --default-transition: 300ms ease-in-out;
 }
+body.offline {
+  header {
+    --primary-color: red;
+    --primary-color-dark: orange;
+  }
+  nav {
+    pointer-events: none;
+  }
+
+}
 
