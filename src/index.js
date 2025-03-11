@@ -1,4 +1,4 @@
-import { displayCovers } from "./elements/Artist";
+import { displayCovers } from "./elements/artist";
 import { displaySongsTitle } from "./elements/songs";
 import "../src/elements/artist-list";
 import "../src/elements/song-list";
