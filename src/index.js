@@ -13,6 +13,7 @@ window.addEventListener('online', (e) => {
   document.querySelector('body').classList.remove("offline");
 });
 
+navigator.serviceWorker.register('/service-worker.js')
 
 //Appeler pour récupérer les artistes et les covers
 displayCovers(await apiCall.getArtits());
