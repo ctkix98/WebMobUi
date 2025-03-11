@@ -4,7 +4,7 @@ export default defineConfig({
     root: 'src',
     build: {
         outDir: '../dist',
-        target: 'es6',
+        target: 'esnext',
         emptyOutDir: true, // Clean the output directory before building
     },
     server: {
