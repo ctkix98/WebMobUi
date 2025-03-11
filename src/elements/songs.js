@@ -18,6 +18,10 @@ export function displaySongsTitle(arraySongs){
         playSong(song, arraySongs)
        })
 
+       songTitle.addEventListener("favorite", e => {
+        console.log("Je suis dans songs.js")
+       })
+
 
     });
 }

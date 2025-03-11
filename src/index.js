@@ -5,6 +5,7 @@ import "../src/elements/song-list";
 import { addToggle } from "../src/elements/search";
 import * as apiCall from "./api";
 
+//Check si online ou offline
 window.addEventListener('offline', (e) => {
   document.querySelector('body').classList.add("offline");
 });
@@ -13,7 +14,8 @@ window.addEventListener('online', (e) => {
   document.querySelector('body').classList.remove("offline");
 });
 
-navigator.serviceWorker.register('/service-worker.js')
+//Appel du service worker
+//navigator.serviceWorker.register('/service-worker.js')
 
 //Appeler pour récupérer les artistes et les covers
 displayCovers(await apiCall.getArtits());
@@ -81,7 +83,7 @@ window.addEventListener("hashchange", async () => {
   const hash = window.location.hash;
   //console.log(hash);
   const hasSplit = hash.split("-");
-  console.log(hasSplit);
+  //console.log(hasSplit);
 
   const activeSection = document.querySelector(`${hash}-section`); //récupérer le hash
   //Rediriger en fonction du has

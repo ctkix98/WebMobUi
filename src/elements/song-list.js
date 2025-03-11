@@ -1,5 +1,7 @@
 const playEvent = new CustomEvent("play_click")
 
+const addFavorite = new CustomEvent("favorite")
+
 export class SongList extends HTMLElement {
   static observedAttributes = ["favorite"];
   connectedCallback() {
@@ -31,6 +33,14 @@ export class SongList extends HTMLElement {
           e.preventDefault()
           this.dispatchEvent(playEvent)
           //console.log(e.target)
+        })
+
+        const favoriteButton = this.querySelector(".favorite-button ")
+        favoriteButton.addEventListener("click", (e)=> {
+          e.preventDefault()
+          this.dispatchEvent(addFavorite)
+          //console.log(e.target)
+          //console.log("J'ai cliqué sur le favoris !")
         })
   }
 }
