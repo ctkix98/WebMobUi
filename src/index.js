@@ -4,6 +4,7 @@ import "../src/elements/artist-list";
 import "../src/elements/song-list";
 import { addToggle } from "../src/elements/search";
 import * as apiCall from "./api";
+import { getItems } from "./elements/favoris";
 
 //Check si online ou offline
 window.addEventListener('offline', (e) => {
@@ -113,8 +114,12 @@ window.addEventListener("hashchange", async () => {
       break;
 
     case "#favorites":
-      activeSection.classList.add("active");
-      window.location.hash = hash;
+      removeActiv();
+      const favoritesSongs = getItems()
+      const favoritesSection = document.querySelector("#list-section");
+      favoritesSection.classList.add("active");
+      nameArtistSelected.innerHTML = `Favoris`;
+      displaySongsTitle(favoritesSongs);
       break;
 
     case "#search":
