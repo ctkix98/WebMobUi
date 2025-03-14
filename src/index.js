@@ -4,15 +4,15 @@ import "../src/elements/artist-list";
 import "../src/elements/song-list";
 import { addToggle } from "../src/elements/search";
 import * as apiCall from "./api";
-import { getItems } from "./elements/favoris";
+import { getItems, removeItem } from "./elements/favoris";
 
 //Check si online ou offline
-window.addEventListener('offline', (e) => {
-  document.querySelector('body').classList.add("offline");
+window.addEventListener("offline", (e) => {
+  document.querySelector("body").classList.add("offline");
 });
 
-window.addEventListener('online', (e) => {
-  document.querySelector('body').classList.remove("offline");
+window.addEventListener("online", (e) => {
+  document.querySelector("body").classList.remove("offline");
 });
 
 //Appel du service worker
@@ -115,11 +115,20 @@ window.addEventListener("hashchange", async () => {
 
     case "#favorites":
       removeActiv();
-      const favoritesSongs = getItems()
+      const favoritesSongs = getItems();
       const favoritesSection = document.querySelector("#list-section");
       favoritesSection.classList.add("active");
       nameArtistSelected.innerHTML = `Favoris`;
       displaySongsTitle(favoritesSongs);
+
+      //checker si on clique sur le coeur, on retire la chanson des favoris
+      const songTitle = document.querySelectorAll("song-list");
+      songTitle.forEach((song) => {
+        song.addEventListener("favorite", (e) => {
+          e.target.remove();
+        });
+      });
+
       break;
 
     case "#search":
@@ -130,7 +139,7 @@ window.addEventListener("hashchange", async () => {
       searchSection.classList.add("active");
       nameArtistSelected.innerHTML = `Elements relatifs à ta recherche : ${hasSplit[1]}`;
       displaySongsTitle(searchList);
-      console.log(searchList)
+      console.log(searchList);
       break;
   }
 });
