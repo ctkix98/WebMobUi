@@ -9,7 +9,11 @@ export function displaySongsTitle(arraySongs) {
     const songTitle = document.createElement("song-list");
     songTitle.setAttribute("title", song.title);
     songTitle.setAttribute("audio_url", song.audio_url);
-    songTitle.setAttribute("favorite", false);
+    if (getItem(song.id)) {
+      songTitle.setAttribute("favorite", true);
+    } else {
+      songTitle.setAttribute("favorite", false);
+    }
 
     songSection.appendChild(songTitle);
 
